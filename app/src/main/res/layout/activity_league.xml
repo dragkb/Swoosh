@@ -64,6 +64,7 @@
             android:textColor="@android:color/white"
             android:textOff="@string/mens"
             android:textOn="@string/mens"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="145dp" />
@@ -79,6 +80,7 @@
             android:textColor="@android:color/white"
             android:textOff="@string/womens"
             android:textOn="@string/womens"
+            android:textStyle="bold"
             tools:layout_editor_absoluteX="123dp"
             tools:layout_editor_absoluteY="214dp" />
 
@@ -90,11 +92,12 @@
             android:text="@string/co_ed"
             android:textColor="@android:color/white"
             android:textOff="@string/co_ed"
-            android:textOn="@string/co_ed" />
+            android:textOn="@string/co_ed"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/nextButton"
+        android:id="@+id/leagueNextBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -102,9 +105,11 @@
         android:layout_marginBottom="12dp"
         android:background="@drawable/swoosh_button"
         android:fontFamily="@font/montserrat"
+        android:onClick="leagueNextBtnClicked"
         android:text="@string/next"
         android:textColor="@android:color/white"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
