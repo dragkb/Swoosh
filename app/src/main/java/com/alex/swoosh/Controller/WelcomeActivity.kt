@@ -1,7 +1,8 @@
-package com.alex.swoosh
+package com.alex.swoosh.Controller
 
 import android.content.Intent
 import android.os.Bundle
+import com.alex.swoosh.R
 import kotlinx.android.synthetic.main.activity_welcome.*
 
 class WelcomeActivity : BaseActivity() {

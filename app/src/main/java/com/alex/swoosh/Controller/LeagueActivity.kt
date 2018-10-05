@@ -1,9 +1,11 @@
-package com.alex.swoosh
+package com.alex.swoosh.Controller
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.alex.swoosh.Utilities.EXTRA_LEAGUE
+import com.alex.swoosh.R
 import kotlinx.android.synthetic.main.activity_league.*
 
 // Extends BaseActivity class wich has Log.d()
@@ -39,14 +41,14 @@ class LeagueActivity : BaseActivity() {
     }
 
 
-    // Click on nextBtn moves to next activity. Created toast. putExtra() implemented
+    // By clicking on nextBtn intent sent to the Skill Activity. Implemented Toast. putExtra() implemented.
     fun leagueNextBtnClicked(view: View){
         if (selectedLeague != "") {
             val skillActivity = Intent(this, SkillActivity::class.java)
             skillActivity.putExtra(EXTRA_LEAGUE, selectedLeague)
             startActivity(skillActivity)
         } else {
-            Toast.makeText(this, "Please select a league.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Please select a league", Toast.LENGTH_SHORT).show()
         }
     }
 }
