@@ -4,42 +4,53 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.alex.swoosh.Utilities.EXTRA_LEAGUE
+import com.alex.swoosh.Model.Player
 import com.alex.swoosh.R
-import com.alex.swoosh.Utilities.EXTRA_SKILL
+import com.alex.swoosh.Utilities.EXTRA_PLAYER
 import kotlinx.android.synthetic.main.activity_skill.*
 
 class SkillActivity : BaseActivity() {
 
-    // creating a var for holding intent message
-    var league = ""
-    // creating a var for passing it to the intent
-    var skill = ""
+    // Creating a lateinit var with type of our Parcelable class "Player"
+    lateinit var player : Player
 
+    // Save the instance of Parcelable class Player in order to pass it to another activity
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putParcelable(EXTRA_PLAYER, player)
+    }
+
+    // onCreate() saves all UI element's IDs and use it for creating
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_skill)
-
         // Getting intent message from LeagueActivity
-        league = intent.getStringExtra(EXTRA_LEAGUE)
+        player = intent.getParcelableExtra(EXTRA_PLAYER)
+    }
+
+    // Pass savedInstanceState to the activity in Portrait or Landscape mode depends on the orientation
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if (savedInstanceState != null){
+            player = savedInstanceState.getParcelable(EXTRA_PLAYER)
+        }
     }
 
     fun onBeginnerSkillBtnClicked(view: View){
         ballerSkillBtn.isChecked = false
-        skill = "beginner"
+        player.skill = "beginner"
     }
 
     fun onBallerSkillBtnClicked(view: View){
         beginnerSkillBtn.isChecked = false
-        skill = "baller"
+        player.skill = "baller"
     }
 
     // By clicking on finishBtn intent sent to the finish activity. Implemented Toast. putExtra() implemented.
     fun onFinishSkillBtnClicked(view: View){
-        if (skill != "") {
+        if (player.skill != "") {
             val finishActivity = Intent(this, FinishActivity::class.java)
-            finishActivity.putExtra(EXTRA_LEAGUE, league)
-            finishActivity.putExtra(EXTRA_SKILL, skill)
+            finishActivity.putExtra(EXTRA_PLAYER, player)
             startActivity(finishActivity)
         } else {
             Toast.makeText(this, "Please select a skill", Toast.LENGTH_SHORT).show()
